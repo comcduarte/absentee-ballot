@@ -10,7 +10,7 @@ namespace Application;
 class Module
 {
     const VERSION = 'DEV';
-    const TITLE = 'absentee-ballot';
+    const TITLE = 'Absentee Ballot Application';
 
     public function getConfig()
     {
