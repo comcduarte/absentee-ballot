@@ -1,4 +1,4 @@
-# [project-name] Application
+# absentee-ballot Application
 
 ## Installation
 - Add required Sub Modules to project.  Update modules.conf.php to indicate the additional modules.
