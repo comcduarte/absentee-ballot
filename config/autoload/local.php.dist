@@ -12,4 +12,14 @@
  */
 
 return [
+    'service_manager' => [
+        'services' => [
+            'model-primary-adapter-config' => [
+                'driver' => 'PDO',
+                'dsn' => 'mysql:host=it-webdb01.midnet.cityofmiddletown.com;dbname=[project-name]_dev',
+                'username' => '[project-name]',
+                'password' => '[project-name]',
+            ],
+        ],
+    ],
 ];
