@@ -24,7 +24,8 @@
 			"Midnet\\" : "module/Midnet/src",
 			"Acl\\" : "module/Acl/src",
 			"Annotation\\" : "module/Annotation/src",
-			"User\\" : "module/User/src"
+			"User\\" : "module/User/src",
+			"Ballot\\" : "module/Ballot/src"
 		}
 	},
 	"autoload-dev" : {

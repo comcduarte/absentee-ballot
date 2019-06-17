@@ -27,4 +27,5 @@ return [
 //     'Acl',
     'Midnet',
     'User',
+    'Ballot',
 ];
