@@ -16,10 +16,17 @@ class ConfigController extends AbstractConfigController
     public function clearDatabase()
     {
         $sql = new Sql($this->adapter);
+        $ddl = [];
         
-        $ddl = new DropTable('ballots');
+        $ddl[] = new DropTable('ballots');
+        $ddl[] = new DropTable('reasons');
+        $ddl[] = new DropTable('districts');
+        $ddl[] = new DropTable('distributions');
+        $ddl[] = new DropTable('parties');
         
-        $this->adapter->query($sql->buildSqlString($ddl), $this->adapter::QUERY_MODE_EXECUTE);
+        foreach ($ddl as $obj) {
+            $this->adapter->query($sql->buildSqlString($obj), $this->adapter::QUERY_MODE_EXECUTE);
+        }
     }
 
     public function createDatabase()
@@ -61,8 +68,59 @@ class ConfigController extends AbstractConfigController
         $ddl = new CreateTable('reasons');
         $ddl->addColumn(new Varchar('UUID', 36));
         
-        $ddl->addColumn(new Varchar('REASON', 255, TRUE));
         $ddl->addColumn(new Varchar('CODE', 255, TRUE));
+        $ddl->addColumn(new Varchar('NAME', 255, TRUE));
+        
+        $ddl->addColumn(new Integer('STATUS', TRUE));
+        $ddl->addColumn(new Datetime('DATE_CREATED', TRUE));
+        $ddl->addColumn(new Datetime('DATE_MODIFIED', TRUE));
+        
+        $ddl->addConstraint(new PrimaryKey('UUID'));
+        
+        $this->adapter->query($sql->buildSqlString($ddl), $this->adapter::QUERY_MODE_EXECUTE);
+        
+        /******************************
+         * DISTRICTS
+         ******************************/
+        $ddl = new CreateTable('districts');
+        $ddl->addColumn(new Varchar('UUID', 36));
+        
+        $ddl->addColumn(new Varchar('CODE', 255, TRUE));
+        $ddl->addColumn(new Varchar('NAME', 255, TRUE));
+        
+        $ddl->addColumn(new Integer('STATUS', TRUE));
+        $ddl->addColumn(new Datetime('DATE_CREATED', TRUE));
+        $ddl->addColumn(new Datetime('DATE_MODIFIED', TRUE));
+        
+        $ddl->addConstraint(new PrimaryKey('UUID'));
+        
+        $this->adapter->query($sql->buildSqlString($ddl), $this->adapter::QUERY_MODE_EXECUTE);
+        
+        /******************************
+         * DISTRIBUTIONS
+         ******************************/
+        $ddl = new CreateTable('distributions');
+        $ddl->addColumn(new Varchar('UUID', 36));
+        
+        $ddl->addColumn(new Varchar('CODE', 255, TRUE));
+        $ddl->addColumn(new Varchar('NAME', 255, TRUE));
+        
+        $ddl->addColumn(new Integer('STATUS', TRUE));
+        $ddl->addColumn(new Datetime('DATE_CREATED', TRUE));
+        $ddl->addColumn(new Datetime('DATE_MODIFIED', TRUE));
+        
+        $ddl->addConstraint(new PrimaryKey('UUID'));
+        
+        $this->adapter->query($sql->buildSqlString($ddl), $this->adapter::QUERY_MODE_EXECUTE);
+        
+        /******************************
+         * PARTIES
+         ******************************/
+        $ddl = new CreateTable('parties');
+        $ddl->addColumn(new Varchar('UUID', 36));
+        
+        $ddl->addColumn(new Varchar('CODE', 255, TRUE));
+        $ddl->addColumn(new Varchar('NAME', 255, TRUE));
         
         $ddl->addColumn(new Integer('STATUS', TRUE));
         $ddl->addColumn(new Datetime('DATE_CREATED', TRUE));

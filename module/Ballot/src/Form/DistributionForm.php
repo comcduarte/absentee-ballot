@@ -1,7 +1,7 @@
 <?php 
 namespace Ballot\Form;
 
-class ReasonForm extends TableForm
+class DistributionForm extends TableForm
 {
     
 }
