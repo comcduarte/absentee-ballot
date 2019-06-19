@@ -152,6 +152,11 @@
 			<attribute name="composer" value="vendor"/>
 		</attributes>
 	</buildpathentry>
+	<buildpathentry kind="src" path="vendor/zendframework/zend-paginator/src">
+		<attributes>
+			<attribute name="composer" value="vendor"/>
+		</attributes>
+	</buildpathentry>
 	<buildpathentry kind="src" path="vendor/zendframework/zend-permissions-acl/src">
 		<attributes>
 			<attribute name="composer" value="vendor"/>
