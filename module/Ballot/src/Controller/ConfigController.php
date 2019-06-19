@@ -26,6 +26,10 @@ class ConfigController extends AbstractConfigController
     {
         $sql = new Sql($this->adapter);
         
+        /******************************
+         * BALLOTS
+         ******************************/
+        
         $ddl = new CreateTable('ballots');
         $ddl->addColumn(new Varchar('UUID', 36));
         
@@ -42,6 +46,23 @@ class ConfigController extends AbstractConfigController
         $ddl->addColumn(new Varchar('DISTRIBUTION_CODE', 36, TRUE));
         $ddl->addColumn(new Date('DATE_ISSUED', TRUE));
         $ddl->addColumn(new Date('DATE_RETURNED', TRUE));
+        
+        $ddl->addColumn(new Integer('STATUS', TRUE));
+        $ddl->addColumn(new Datetime('DATE_CREATED', TRUE));
+        $ddl->addColumn(new Datetime('DATE_MODIFIED', TRUE));
+        
+        $ddl->addConstraint(new PrimaryKey('UUID'));
+        
+        $this->adapter->query($sql->buildSqlString($ddl), $this->adapter::QUERY_MODE_EXECUTE);
+        
+        /******************************
+         * REASONS
+         ******************************/
+        $ddl = new CreateTable('reasons');
+        $ddl->addColumn(new Varchar('UUID', 36));
+        
+        $ddl->addColumn(new Varchar('REASON', 255, TRUE));
+        $ddl->addColumn(new Varchar('CODE', 255, TRUE));
         
         $ddl->addColumn(new Integer('STATUS', TRUE));
         $ddl->addColumn(new Datetime('DATE_CREATED', TRUE));
