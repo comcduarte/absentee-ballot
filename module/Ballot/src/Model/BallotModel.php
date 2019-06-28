@@ -29,4 +29,17 @@ class BallotModel extends DatabaseObject
         $this->setTableName('ballots');
         $this->setPrimaryKey('UUID');
     }
+    
+    public static function retrieveStatus($status)
+    {
+        $statuses = [
+            NULL => 'Inactive',
+            self::INACTIVE_STATUS => 'Inactive',
+            self::ACTIVE_STATUS => 'Active',
+            self::ISSUED_STATUS => 'Issued',
+            self::RETURNED_STATUS => 'Returned',
+        ];
+        
+        return $statuses[$status];
+    }
 }

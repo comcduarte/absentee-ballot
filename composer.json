@@ -26,7 +26,8 @@
 			"Acl\\" : "module/Acl/src",
 			"Annotation\\" : "module/Annotation/src",
 			"User\\" : "module/User/src",
-			"Ballot\\" : "module/Ballot/src"
+			"Ballot\\" : "module/Ballot/src",
+			"Report\\" : "module/Report/src"
 		}
 	},
 	"autoload-dev" : {

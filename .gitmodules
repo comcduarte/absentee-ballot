@@ -10,3 +10,6 @@
 [submodule "module\\User"]
 	path = module\\User
 	url = https://github.com/comcduarte/userModule.git
+[submodule "module\\Report"]
+	path = module\\Report
+	url = https://github.com/comcduarte/reportModule.git

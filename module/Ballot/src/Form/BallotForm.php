@@ -3,6 +3,7 @@ namespace Ballot\Form;
 
 use Ballot\Model\BallotModel;
 use Midnet\Form\AbstractBaseForm;
+use Midnet\Form\Element\DatabaseSelectObject;
 use Zend\Db\Adapter\AdapterAwareTrait;
 use Zend\Form\Element\Date;
 use Zend\Form\Element\Text;
@@ -60,7 +61,6 @@ class BallotForm extends AbstractBaseForm
             'attributes' => [
                 'id' => 'MAILING_ADDR',
                 'class' => 'form-control',
-                'required' => 'true',
             ],
             'options' => [
                 'label' => 'Mailing Address',
@@ -73,7 +73,6 @@ class BallotForm extends AbstractBaseForm
             'attributes' => [
                 'id' => 'MAILING_CITY',
                 'class' => 'form-control',
-                'required' => 'true',
             ],
             'options' => [
                 'label' => 'Mailing City',
@@ -86,7 +85,6 @@ class BallotForm extends AbstractBaseForm
             'attributes' => [
                 'id' => 'MAILING_STATE',
                 'class' => 'form-control',
-                'required' => 'true',
             ],
             'options' => [
                 'label' => 'Mailing State',
@@ -99,7 +97,6 @@ class BallotForm extends AbstractBaseForm
             'attributes' => [
                 'id' => 'MAILING_ZIP',
                 'class' => 'form-control',
-                'required' => 'true',
             ],
             'options' => [
                 'label' => 'Mailing Zip',
@@ -108,7 +105,7 @@ class BallotForm extends AbstractBaseForm
         
         $this->add([
             'name' => 'VOTING_DISTRICT',
-            'type' => Text::class,
+            'type' => DatabaseSelectObject::class,
             'attributes' => [
                 'id' => 'VOTING_DISTRICT',
                 'class' => 'form-control',
@@ -116,12 +113,16 @@ class BallotForm extends AbstractBaseForm
             ],
             'options' => [
                 'label' => 'Voting District',
+                'database_adapter' => $this->adapter,
+                'database_table' => 'districts',
+                'database_id_column' => 'UUID',
+                'database_value_column' => 'NAME',
             ],
         ],['priority' => 100]);
         
         $this->add([
             'name' => 'PARTY',
-            'type' => Text::class,
+            'type' => DatabaseSelectObject::class,
             'attributes' => [
                 'id' => 'PARTY',
                 'class' => 'form-control',
@@ -129,12 +130,16 @@ class BallotForm extends AbstractBaseForm
             ],
             'options' => [
                 'label' => 'Party',
+                'database_adapter' => $this->adapter,
+                'database_table' => 'parties',
+                'database_id_column' => 'UUID',
+                'database_value_column' => 'NAME',
             ],
         ],['priority' => 100]);
         
         $this->add([
             'name' => 'REASON_CODE',
-            'type' => Text::class,
+            'type' => DatabaseSelectObject::class,
             'attributes' => [
                 'id' => 'REASON_CODE',
                 'class' => 'form-control',
@@ -142,12 +147,16 @@ class BallotForm extends AbstractBaseForm
             ],
             'options' => [
                 'label' => 'Reason Code',
+                'database_adapter' => $this->adapter,
+                'database_table' => 'reasons',
+                'database_id_column' => 'UUID',
+                'database_value_column' => 'NAME',
             ],
         ],['priority' => 100]);
         
         $this->add([
             'name' => 'DISTRIBUTION_CODE',
-            'type' => Text::class,
+            'type' => DatabaseSelectObject::class,
             'attributes' => [
                 'id' => 'DISTRIBUTION_CODE',
                 'class' => 'form-control',
@@ -155,6 +164,10 @@ class BallotForm extends AbstractBaseForm
             ],
             'options' => [
                 'label' => 'Distribution Code',
+                'database_adapter' => $this->adapter,
+                'database_table' => 'distributions',
+                'database_id_column' => 'UUID',
+                'database_value_column' => 'NAME',
             ],
         ],['priority' => 100]);
         
@@ -177,7 +190,6 @@ class BallotForm extends AbstractBaseForm
             'attributes' => [
                 'id' => 'DATE_RETURNED',
                 'class' => 'form-control',
-                'required' => 'true',
             ],
             'options' => [
                 'label' => 'Date Returned',

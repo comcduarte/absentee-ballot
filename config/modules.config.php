@@ -29,4 +29,5 @@ return [
     'Midnet',
     'User',
     'Ballot',
+    'Report',
 ];
