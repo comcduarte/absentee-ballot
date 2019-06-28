@@ -1,0 +1,23 @@
+<?php 
+use Midnet\Form\AbstractBaseForm;
+use Zend\Form\Element\MultiCheckbox;
+
+$form = new AbstractBaseForm('RETURN_FORM');
+$form->initialize();
+$form->remove('STATUS');
+
+$element = new MultiCheckbox('RETURNS');
+$element->setLabel('Select Returned Ballots');
+$element->setValueOptions($this->data);
+$element->setAttributes([
+    'class' => 'form-control',
+]);
+
+$form->add($element, ['priority' => 100]);
+$form->prepare();
+
+
+echo $this->form()->openTag($form);
+echo $this->formCollection($form);
+echo $this->form()->closeTag($form);
+?>

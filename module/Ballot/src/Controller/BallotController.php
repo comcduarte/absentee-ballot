@@ -46,4 +46,56 @@ class BallotController extends AbstractBaseController
         
         return ($view);
     }
+    
+    public function returnAction() 
+    {
+        $view = new ViewModel();
+        
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $date = new \DateTime('now',new \DateTimeZone('EDT'));
+            $today = $date->format('Y-m-d');
+            
+            $post = array_merge_recursive(
+                $request->getPost()->toArray(),
+                $request->getFiles()->toArray()
+                );
+            
+            foreach ($post['RETURNS'] as $uuid) {
+                $this->model->read(['UUID' => $uuid]);
+                $this->model->STATUS = $this->model::RETURNED_STATUS;
+                $this->model->DATE_RETURNED = $today;
+                $this->model->update();
+            }
+            
+        }
+        
+        $sql = new Sql($this->adapter);
+        
+        $select = new Select();
+        $select->from($this->model->getTableName())
+            ->columns(['UUID','NUMBER'])
+            ->where(['STATUS' => $this->model::ISSUED_STATUS]);
+        
+        $statement = $sql->prepareStatementForSqlObject($select);
+        $resultSet = new ResultSet();
+        try {
+            $results = $statement->execute();
+            $resultSet->initialize($results);
+        } catch (Exception $e) {
+            return $e;
+        }
+        
+        $records = $resultSet->toArray();
+        $data = [];
+        foreach ($records as $record) {
+            $data[$record['UUID']] = $record['NUMBER'];
+        }
+        
+        
+        $view->setVariable('data', $data);
+        
+        
+        return ($view);
+    }
 }

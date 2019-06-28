@@ -207,6 +207,11 @@ return [
                         'action' => 'create'
                     ],
                     [
+                        'label' => 'Process Returns',
+                        'route' => 'ballots/default',
+                        'action' => 'return',
+                    ],
+                    [
                         'label' => 'Search Ballots',
                         'route' => 'ballots/default',
                         'action' => 'search',
