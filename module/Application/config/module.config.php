@@ -36,6 +36,13 @@ return [
             ],
         ],
     ],
+    'acl' => [
+        'guest' => [
+        ],
+        'member' => [
+            'home' => ['index'],
+        ],
+    ],
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => Controller\Factory\IndexControllerFactory::class,

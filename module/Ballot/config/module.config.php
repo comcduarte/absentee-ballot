@@ -172,7 +172,12 @@ return [
             
         ],
         'member' => [
-            
+            'ballots/default' => ['index','create','update','delete','return','search'],
+            'reasons/default' => ['index','create','update','delete'],
+            'districts/default' => ['index','create','update','delete'],
+            'distributions/default' => ['index','create','update','delete'],
+            'parties/default' => ['index','create','update','delete'],
+            'ballots/config' => ['index'],
         ],
     ],
     'controllers' => [
